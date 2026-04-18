@@ -17,9 +17,13 @@ pen.up()
 pen.goto(0,350)
 pen.write("Pop the balloon!",align="center",font=("arial",30,"bold"))
 score=0
+pen1=Turtle()
+pen1.hideturtle()
+pen1.up()
 def show_score():
-    pen.goto(-400,350)
-    pen.write("score:{}".format(score),font=("arial",20,"bold"))
+    pen1.clear()
+    pen1.goto(-400,350)
+    pen1.write("score:{}".format(score),font=("arial",20,"bold"))
 show_score()
 def left():
     if dart.xcor()>-400:
@@ -55,8 +59,10 @@ while True:
             b.hideturtle()
             balloons.remove(b)
         elif dart.distance(b)<20:
-            if b.color=="black":
-                print("gameover")
+            if b.color()[0]=="black":
+                pen.goto(-100,0)
+                pen.color("red")
+                pen.write("gameover score:{}".format(score),font=("arial",40,"bold"))
                 bye()
             else:
                 score+=10
